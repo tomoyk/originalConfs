@@ -7,7 +7,7 @@ Wants=network-online.target
 [Service]
 Type=simple
 PIDFile=/opt/samba/var/run/samba.pid
-ExecStartPre=/opt/samba/bin/testparm -s -v /opt/samba/etc/smb.conf > /dev/null
+ExecStartPre=/bin/sh -c '/opt/samba/bin/testparm -s -v /opt/samba/etc/smb.conf > /dev/null'
 ExecStart=/opt/samba/sbin/smbd -F -s /opt/samba/etc/smb.conf
 ExecReload=/bin/kill -HUP $MAINPID
 ExecStop=/bin/kill -TERM $MAINPID
