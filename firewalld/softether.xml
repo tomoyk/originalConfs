@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<service>
+  <short>SoftEther VPN</short>
+  <description>SoftEther VPN Server</description>
+  <port protocol="tcp" port="443"/>
+  <port protocol="tcp" port="992"/>
+  <port protocol="tcp" port="5555"/>
+</service>
