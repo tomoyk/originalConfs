@@ -1,0 +1,16 @@
+[Unit]
+Description=SoftEther VPN Server
+Documentation=https://ja.softether.org/4-docs/1-manual/7/7.3
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=forking
+ExecStartPre=/bin/sh -c 'test -x /opt/vpnserver/vpnserver || (echo [ERROR]: No such a ExecFile && exit 1)'
+ExecStart=/bin/sh -c '/opt/vpnserver/vpnserver start && touch /var/lock/subsys/vpnserver'
+ExecReload=/bin/sh -c '/opt/vpnserver/vpnserver stop && sleep 3 && /opt/vpnserver/vpnserver start'
+ExecStop=/bin/sh -c '/opt/vpnserver/vpnserver stop && rm -f /var/lock/subsys/vpnserver'
+WorkingDirectory=/opt/vpnserver/
+
+[Install]
+WantedBy=multi-user.target
